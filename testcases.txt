@@ -8,3 +8,14 @@ peekFirst -> Comprobaremos que el primer elemento de la lista es el mismo que el
 peekLast -> Comprobaremos que el ultimo elemento de la lista es el mismo elemento que el valor devuelto por la funcion
 size -> Comprobamos con una lista con una longitud determinada que la funcion size de esa lista devuelve esa misma longitud
 
+/**
+ * Test cases:
+ * secondNode.getPrevious --> firstNode *
+ * secondNode.getNext --> thirdNode *
+ * secondNode.getItem --> newItem *
+ * firstNode.isFirstNode --> true *
+ * thirdNode.isLastNode --> true *
+ * secondNode.isNotATerminalNode --> true *
+ * setNext --> newNext *
+ * setPrevious --> newPrevious *
+ */
