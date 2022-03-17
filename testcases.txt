@@ -1,0 +1,10 @@
+DoubleEndedQueue (DoubleLinkedListQueue)
+
+append -> Comprobaremos si el nuevo ultimo elemento es el elemento que le hemos pasado a la funcion
+appendLeft -> Comprobaraemos si el nuevo primer elemento es el elemento que le hemos pasado a la funcion
+void deleteFirst -> Comprobaremos que el primer elemento es diferente al elemento que le hemos pasado a la funcion
+void deleteLast -> Comprobaremos que el primer elemento es diferente al elemento que le hemos pasado a la funcion
+peekFirst -> Comprobaremos que el primer elemento de la lista es el mismo que el valor devuelto por la funcion
+peekLast -> Comprobaremos que el ultimo elemento de la lista es el mismo elemento que el valor devuelto por la funcion
+size -> Comprobamos con una lista con una longitud determinada que la funcion size de esa lista devuelve esa misma longitud
+
