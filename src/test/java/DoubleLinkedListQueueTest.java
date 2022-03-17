@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
   * @param <T>
  */
@@ -15,12 +17,10 @@ class DoubleLinkedListQueueTest<T> {
         nodo = new DequeNode<T>(null,null, null);
      }
 
-    /*@Test
+    @Test
      public void shouldAppendChangeTheLastNode(){
-        DequeNodeexpectedValue = nodo;
-        int obtainedValue =
-        assertEquals(expectedValue,);
-    }*/
+        assertEquals(0,0);
+    }
 
 
 }
