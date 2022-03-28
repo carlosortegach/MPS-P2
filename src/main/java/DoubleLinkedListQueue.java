@@ -16,9 +16,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }else{
             if(first == null) first = last = node;
             else {
-                node.setNext(first);
-                first.setPrevious(node);
-                first = node;
+                node.setPrevious(last);
+                last.setNext(node);
+                last = node;
             }
         }
     }
@@ -28,9 +28,9 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
         }else{
             if(last == null) first = last = node;
             else {
-                node.setPrevious(last);
-                last.setNext(node);
-                last = node;
+                node.setNext(first);
+                first.setPrevious(node);
+                first = node;
             }
         }
     }
@@ -74,58 +74,69 @@ public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
 
     @Override
     public DequeNode<T> getAt(int position) {
-        DequeNode<T> nodo1 = first;
-        if(nodo1 == null)
-            throw new RuntimeException("La lista es nula");
-        else if(position < 1 && position > this.size())
+        if(position < 1 || position > this.size())
             throw new RuntimeException("Posicion invalida");
+        DequeNode<T> node = first;
         for (int i = 1; i < position; i++) {
-            nodo1.getNext();
+            node = node.getNext();
         }
-        return nodo1;
+        return node;
     }
 
     @Override
     public DequeNode<T> find(T item) {
-        DequeNode<T> nodo1 = first;
-        if(nodo1 == null)
-            throw new RuntimeException("La lista es nula");
-        while(nodo1 != null && !nodo1.getItem().equals(item)){
-            nodo1 = nodo1.getNext();
+        if(item == null)
+            throw new RuntimeException("Item nulo");
+        DequeNode<T> node = first;
+        while(node != null && !node.getItem().equals(item)){
+            node = node.getNext();
         }
-        if(nodo1 == null)
-            throw new RuntimeException("Item no encontrado");
-        return nodo1;
+        return node;
     }
 
     @Override
     public void delete(DequeNode<T> node) {
-        DequeNode<T> nodo1 = first;
-        while(nodo1 != null && !nodo1.equals(node)){
-            nodo1 = nodo1.getNext();
+        if(node == null)
+            throw new RuntimeException("Nodo nulo");
+        DequeNode<T> node1 = first;
+        while(node1 != null && !node1.equals(node)){
+            node1 = node1.getNext();
         }
-        if(nodo1 == null)
-            throw new RuntimeException("Item no encontrado");
-        if(!nodo1.isNotATerminalNode()){
+        if(!node1.isNotATerminalNode()){
             first = null;
             last = null;
         }
-        else if(nodo1.isLastNode()){
-            nodo1.getPrevious().setNext(null);
+        else if(node1.isLastNode()){
+            node1.getPrevious().setNext(null);
             last = last.getPrevious();
         }
-        else if(nodo1.isFirstNode()) {
-            nodo1.getNext().setPrevious(null);
+        else if(node1.isFirstNode()) {
+            node1.getNext().setPrevious(null);
             first = first.getNext();
-        }
-        else {
-            nodo1.getPrevious().setNext(nodo1.getNext());
-            nodo1.getNext().setPrevious(nodo1.getPrevious());
+        }else {
+            node1.getPrevious().setNext(node1.getNext());
+            node1.getNext().setPrevious(node1.getPrevious());
         }
     }
 
     @Override
-    public void sort(Comparator<?> comparator) {
+    public void sort(Comparator<Integer> comparator) {
+        DequeNode<Integer> current, index;
+        if(first != null) {
+            //Current will point to head
+            for(current = (DequeNode<Integer>) first; current.getNext() != null; current = current.getNext()) {
+                //Index will point to node next to current
+                for(index = current.getNext(); index != null; index = index.getNext()) {
+                    if(comparator.compare(current.getItem(), index.getItem())>=0){
+                        Integer tmp=current.getItem();
+                        current.setItem(index.getItem());
+                        index.setItem(tmp);
+
+                    }
+                }
+            }
+        }
+
 
     }
 }
