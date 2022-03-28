@@ -1,3 +1,4 @@
+package org.wingaben.doubleendedqueue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,18 +20,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DequeNodeTest<T> {
     T item;
-    DequeNode<T> firstNode ;
-    DequeNode<T> secondNode ;
-    DequeNode<T> thirdNode ;
+    DequeNode firstNode ;
+    DequeNode secondNode ;
+    DequeNode thirdNode ;
     T newItem;
     DequeNode<T> newNext;
     DequeNode<T> newPrevious;
 
     @BeforeEach
     public void setup(){
-        firstNode = new DequeNode<>(item, secondNode, null) ;
-        thirdNode = new DequeNode<>(item, null, secondNode) ;
-        secondNode = new DequeNode<>(item, thirdNode, firstNode) ;
+        firstNode = new DequeNode(item, secondNode, null) ;
+        thirdNode = new DequeNode(item, null, secondNode) ;
+        secondNode = new DequeNode(item, thirdNode, firstNode) ;
     }
 
     @AfterEach
@@ -60,7 +61,7 @@ public class DequeNodeTest<T> {
     public void testComputeReturnsItem(){
         firstNode.setItem(newItem);
         T expectedValue = newItem;
-        T obtainedValue = firstNode.getItem();
+        T obtainedValue = (T) firstNode.getItem();
 
         assertEquals(expectedValue, obtainedValue);
     }
@@ -106,4 +107,6 @@ public class DequeNodeTest<T> {
 
         assertEquals(expectedValue, obtainedValue);
     }
+
+
 }

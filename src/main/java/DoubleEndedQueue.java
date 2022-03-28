@@ -1,3 +1,5 @@
+package org.wingaben.doubleendedqueue;
+
 import java.util.Comparator;
 
 public interface DoubleEndedQueue<T> {
@@ -10,6 +12,7 @@ public interface DoubleEndedQueue<T> {
     DequeNode<T> peekLast() ;
     int size() ;
 
+    // Complex operations
     DequeNode<T> getAt(int position) ;
     DequeNode<T> find (T item) ;
     void delete(DequeNode<T> node) ;

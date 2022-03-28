@@ -19,3 +19,38 @@ size -> Comprobamos con una lista con una longitud determinada que la funcion si
  * setNext --> newNext *
  * setPrevious --> newPrevious *
  */
+
+/**
+ * Test cases:
+ * secondNode.getPrevious --> firstNode *
+ * secondNode.getNext --> thirdNode *
+ * secondNode.getItem --> newItem *
+ * firstNode.isFirstNode --> true *
+ * thirdNode.isLastNode --> true *
+ * secondNode.isNotATerminalNode --> true *
+ * setNext --> newNext *
+ * setPrevious --> newPrevious *
+
+ * Append node1, node2
+  * ddl.peekFirst() --> node1 *
+  * ddl.peekLast() --> node2 *
+  *
+  * AppendLeft node1, node2
+  * peekFirst() --> node2 *
+  * peekLast() --> node1 *
+  * deleteFirst(), peekFirst() --> node2 *
+  * deleteLast(), peekLast() --> node1 *
+  * size() --> 2 *
+  * getAt(2) --> node2 *
+  * find(item2) --> node2 *
+  * delete(node1), peekFirst(), peekLast() --> node2, node3 *
+  * delete(node2), peekFirst(), peekLast() --> node1, node3 *
+  * delete(node3), peekFirst(), peekLast() --> node1, node2 *
+  * sort(ddl) --> node1, node2, node3 *
+  * append(null) --> raises an exception *
+  * appendLeft(null) --> raises an exception *
+  * getAt(0) --> raises an exception *
+  * getAt(3) --> raises an exception *
+  * find(null) --> raises an exception *
+  * delete(null) --> raises an exception *
+ */
