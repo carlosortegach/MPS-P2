@@ -1,5 +1,3 @@
-package org.wingaben.doubleendedqueue;
-
 import org.junit.jupiter.api.Test;
 import java.util.Comparator;
 

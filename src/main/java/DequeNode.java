@@ -1,5 +1,3 @@
-package org.wingaben.doubleendedqueue;
-
 /**
  * Class representing a node of a double-ended queue (deque). Each node has pointers to the next and
  * previous nodes. The previous and next of the first and last node of the deque is null.
