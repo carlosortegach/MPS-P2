@@ -1,4 +1,3 @@
-package org.wingaben.doubleendedqueue;
 import java.util.Comparator;
 
 public class DoubleLinkedListQueue<T> implements DoubleEndedQueue<T>{
