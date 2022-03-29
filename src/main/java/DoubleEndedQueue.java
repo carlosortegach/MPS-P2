@@ -1,3 +1,5 @@
+package org.wingaben.doubleendedqueue;
+
 import java.util.Comparator;
 
 public interface DoubleEndedQueue<T> {
