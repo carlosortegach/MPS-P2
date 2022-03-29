@@ -1,108 +1,44 @@
 package org.wingaben.doubleendedqueue;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test cases:
- * Append node1, node2
- * ddl.peekFirst() --> node1 *
- * ddl.peekLast() --> node2 *
- *
- * AppendLeft node1, node2
- * peekFirst() --> node2 *
- * peekLast() --> node1 *
- * deleteFirst(), peekFirst() --> node2 *
- * deleteLast(), peekLast() --> node1 *
- * size() --> 2 *
- *
- * append(null) --> raises an exception *
- * appendLeft(null) --> raises an exception *
- * getAt(0) --> raises an exception *
- * getAt(3) --> raises an exception *
- * find(null) --> raises an exception *
- * delete(null) --> raises an exception *
- */
-
-class DoubleLinkedListQueueTest<T> {
-    private DoubleEndedQueue<T> ddl;
-    private DequeNode<T> node1, node2, node3;
-    Integer item1 = 1;
-    Integer item2 = 2;
-    Integer item3 = 3;
-
-    @BeforeEach
-     public void setup(){
-        ddl = new DoubleLinkedListQueue<>();
-        node1 = new DequeNode(item1,null, null);
-        node2 = new DequeNode(item2,null, null);
-        node3 = new DequeNode(item3,null, null);
-    }
-
-    @BeforeEach
-    public void clear(){
-        ddl = null;
-    }
-
-    @Test
-    public void testAppendChangesTheFirstNode(){
-        ddl.append(node1);
-        ddl.append(node2);
-        assertEquals(node1,ddl.peekFirst());
-    }
-
-    @Test
-    public void testAppendChangesTheLastNode(){
-        ddl.append(node1);
-        ddl.append(node2);
-        assertEquals(node2,ddl.peekLast());
-    }
-
-    @Test
-    public void testAppendLeftChangesFirstNode(){
-        ddl.appendLeft(node1);
-        ddl.appendLeft(node2);
-        assertEquals(node2,ddl.peekFirst());
-    }
-
-    @Test
-    public void testAppendLeftChangesLastNode(){
-        ddl.appendLeft(node1);
-        ddl.appendLeft(node2);
-        assertEquals(node1,ddl.peekLast());
-    }
+class DoubleLinkedListQueueTest {
 
     @Test
     public void testDeleteFirstNodeChangesFirstNode(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
         ddl.appendLeft(node1);
         ddl.appendLeft(node2);
         ddl.deleteFirst();
+
+        assertEquals(1,ddl.size());
         assertEquals(node1,ddl.peekFirst());
     }
 
     @Test
     public void testDeleteLastNodeChangesLastNode(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
         ddl.appendLeft(node1);
         ddl.appendLeft(node2);
         ddl.deleteLast();
+
+        assertEquals(1,ddl.size());
         assertEquals(node2,ddl.peekLast());
     }
 
     @Test
-    public void testTwoNodesReturnsSize2(){
-        ddl.appendLeft(node1);
-        ddl.appendLeft(node2);
-        assertEquals(2,ddl.size());
-    }
-
-    @Test
     public void testGetAtPosition2ReturnsNode2(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
         ddl.append(node1);
         ddl.append(node2);
         assertEquals(node2,ddl.getAt(2));
@@ -110,14 +46,21 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testFindItemReturnsItem(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
         ddl.append(node1);
         ddl.append(node2);
 
-        assertEquals(node2,ddl.find((T)item2));
+        assertEquals(node2,ddl.find(2));
     }
 
     @Test
     public void testDeleteLastNode(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
+        var node3 = new DequeNode<>(3,null, null);
         ddl.append(node1);
         ddl.append(node2);
         ddl.append(node3);
@@ -129,6 +72,10 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testDeleteFirstNode(){
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
+        var node3 = new DequeNode<>(3,null, null);
+        var ddl = new DoubleLinkedListQueue<Integer>();
         ddl.append(node1);
         ddl.append(node2);
         ddl.append(node3);
@@ -140,6 +87,10 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testDeleteMiddleNode(){
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
+        var node3 = new DequeNode<>(3,null, null);
+        var ddl = new DoubleLinkedListQueue<Integer>();
         ddl.append(node1);
         ddl.append(node2);
         ddl.append(node3);
@@ -151,51 +102,55 @@ class DoubleLinkedListQueueTest<T> {
 
     @Test
     public void testSortingNodes(){
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
+        var node3 = new DequeNode<>(3,null, null);
+        var ddl = new DoubleLinkedListQueue<Integer>();
         ddl.append(node3);
         ddl.append(node1);
         ddl.append(node2);
-        node1.setItem((T)item1);
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1-o2;
-            }
-        };
+        node1.setItem(1);
+        Comparator<Integer> comparator = Comparator.comparingInt(o -> o);
         ddl.sort(comparator);
 
         assertEquals(node1, ddl.peekFirst());
         assertEquals(node3, ddl.peekLast());
     }
 
-
     @Test
     public void testAppendOfANullNodeRaisesAnException(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
         assertThrows(RuntimeException.class, ()->ddl.append(null)) ;
     }
     @Test
     public void testAppendLeftOfANullNodeRaisesAnException(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
         assertThrows(RuntimeException.class, ()->ddl.appendLeft(null)) ;
     }
 
     @Test
     public void testFindOfANullItemRaisesAnException(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
         assertThrows(RuntimeException.class, ()->ddl.find(null)) ;
     }
 
     @Test
     public void testDeleteOfANullNodeRaisesAnException(){
+        var ddl = new DoubleLinkedListQueue<Integer>();
         assertThrows(RuntimeException.class, ()->ddl.delete(null)) ;
     }
 
     @Test
     public void testGetAtOfALowerPositionRaisesAnException(){
-        ddl.appendLeft(node1);
-        ddl.appendLeft(node2);
+        var ddl = new DoubleLinkedListQueue<Integer>();
         assertThrows(RuntimeException.class, ()->ddl.getAt(0)) ;
     }
 
     @Test
     public void testGetAtOfAHigherPositionRaisesAnException(){
+        var node1 = new DequeNode<>(1,null, null);
+        var node2 = new DequeNode<>(2,null, null);
+        var ddl = new DoubleLinkedListQueue<Integer>();
         ddl.appendLeft(node1);
         ddl.appendLeft(node2);
         assertThrows(RuntimeException.class, ()->ddl.getAt(3)) ;
